@@ -1,13 +1,13 @@
 -- Startup Vars
-version = "1.0.0"
-isStable = true
-isDebug = true
+local version = "1.0.0"
+local isStable = true
+local isDebug = true
 
 -- Requirements
-c = require("computer")
-m = require("math")
-term = require("term")
-os = require("os")
+local c = require("computer")
+local m = require("math")
+local term = require("term")
+local os = require("os")
 
 -- Startup Program
 term.clear()
@@ -15,31 +15,25 @@ term.setCursor(1, 1)
 print("memtest.lua copyright (c) PotatoTrumpet")
 print("You may distribute this as long as you do not make a profit off of it")
 print("Version: "..version)
-if isStable == false then
-  print("WARNING: This version is NOT stable")
-elseif isStable == true then
-  if isDebug == true then
+if isStable then
+  if isDebug then
     print("NOTICE: This version is stable")
   end
 else
-  error("isStable is not boolean", 0)
+  print("WARNING: This version is NOT stable")
 end
 
 -- Get RAM
-tMem = c.totalMemory()
-fMem = c.freeMemory()
-totalMem = tMem/1024
-xfreeMem = fMem/1024
-freeMem = m.floor(xfreeMem -.5)
-usedMem = totalMem-freeMem
-if isDebug == true then
+local tMem = c.totalMemory()
+local fMem = c.freeMemory()
+local totalMem = tMem / 1024
+local xfreeMem = fMem / 1024
+local freeMem = m.floor(xfreeMem - .5)
+local usedMem = totalMem - freeMem
+if isDebug then
   print("Using..usedMem .."k/"..totalMem.."k")
   print("Free Memory: "..freeMem.."k/"..totalMem.."k")
 end
-if totalMem <= 192 then
-  error("Insuffecent Memory", 0)
-elseif freeMem <= 192 then
+if totalMem <= 192 or totalMem <= 192 then
   error("Insuffecent Memory", 0)
 end
-
-error("EOF", 0)
